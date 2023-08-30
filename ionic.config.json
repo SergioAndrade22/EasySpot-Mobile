@@ -1,0 +1,7 @@
+{
+  "name": "Quelona",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
