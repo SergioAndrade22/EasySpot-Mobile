@@ -33,7 +33,10 @@ export class HomePage implements OnInit {
 
   registerCurrentPosition = async () => {
     this.disableSend = true
-    const coordinates = await Geolocation.getCurrentPosition();
+    const positionOptions = {
+      enableHighAccuracy: true,
+    }
+    const coordinates = await Geolocation.getCurrentPosition(positionOptions);
     this.toSend.push(this.toObject(coordinates))
   };
 
