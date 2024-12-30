@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'Quelona',
+  appName: 'EasySpot',
   webDir: 'www',
   server: {
     androidScheme: 'https'
