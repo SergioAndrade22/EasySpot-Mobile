@@ -28,6 +28,10 @@ El desarrollo de esta aplicación se realiza en conjunto con el equipo de invest
 <string>Necesario para poder registrar la ubicación al momento en que se acciona el botón</string>
 <key>NSLocationWhenInUseUsageDescription</key>
 <string>Necesario para poder registrar la ubicación al momento en que se acciona el botón</string>
+<key>NSCameraUsageDescription</key>
+<string>Necesario para el acceso a la cámara</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>Necesario para el acceso al micrófono</string>
 ```
 
         3.A. Para verificar la correcta configuración anterior:
