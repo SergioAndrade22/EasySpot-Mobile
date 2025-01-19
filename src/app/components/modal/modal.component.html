@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancelar </ion-button>
+    </ion-buttons>
+    <ion-title>Formulario de posición</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Confirmar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding modal--body">
+  <ion-item>
+    <ion-textarea labelPlacement="stacked" label="Ingrese una breve descripción" [(ngModel)]="description" placeholder="Descripción breve"></ion-textarea>
+  </ion-item>
+  <app-voice-recorder (audioNote)="captureAudio($event)"></app-voice-recorder>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="captureImage()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

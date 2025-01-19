@@ -8,6 +8,7 @@
 
 <ion-content [fullscreen]="true">
   <div id="container">
+    <ion-button expand="block" (click)="openModal()">Cargar información adicional</ion-button>
     <button id="send-button" [disabled]="disableSend" (click)="registerCurrentPosition()">Enviar Posición</button>
   </div>
 
@@ -16,5 +17,6 @@
     message="Se ha registrado correctamente la posición"
     (didDismiss)="enableButton()"
     [animated]="true"
-    [duration]="15000"></ion-toast>
+    [duration]="15000">
+  </ion-toast>
 </ion-content>

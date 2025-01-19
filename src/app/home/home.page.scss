@@ -1,6 +1,8 @@
 #container {
   text-align: center;
   display: flex;
+  flex-direction: column;
+  gap: 1rem;
   align-items: center;
   justify-content: center;
   height: 100%;
@@ -11,4 +13,14 @@
   font-size: 2rem;
   padding: .4em;
   border-radius: 50px;
+}
+
+:host {
+  .custom-modal {
+    max-height: 20rem;
+  
+    & > div[role="dialog"] {
+      max-height: max-content;
+    }
+  }
 }

@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyAIgBxdQrgaAcjFfK9HnQKvi6A-yNiwHX8",
-    authDomain: "quelona-ff089.firebaseapp.com",
-    projectId: "quelona-ff089",
-    storageBucket: "quelona-ff089.appspot.com",
-    messagingSenderId: "130015042923",
-    appId: "1:130015042923:web:740d12fa231e5dda4b402e",
-    measurementId: "G-7LSBNKPFCY"
+    apiKey: "AIzaSyDJZa-BqxHQUrSujRs1uxvDQ_Fs-2oaMco",
+    authDomain: "easyspot-9abe2.firebaseapp.com",
+    databaseURL: "https://easyspot-9abe2-default-rtdb.firebaseio.com",
+    projectId: "easyspot-9abe2",
+    storageBucket: "easyspot-9abe2.firebasestorage.app",
+    messagingSenderId: "72513943435",
+    appId: "1:72513943435:web:e013e9087e2c940a9b218e",
   },
 };
 

@@ -7,26 +7,30 @@ import {
   addDoc
 } from '@angular/fire/firestore'
 import { collection } from 'firebase/firestore';
-import { GPSLocation } from '../types'
+import { GPSLocation, Payload } from '../types'
 
-export const positionConverter = {
-  toFirestore(position: GPSLocation): DocumentData {
-    return { 
-      latitude: position.latitude,
-      longitude: position.longitude,
-      timestamp: position.timestamp
-    };
+export const payloadConverter = {
+  toFirestore(payload: Payload): DocumentData {
+    const firestorePayload: Partial<Payload> = {
+      position: payload.position,
+    }
+    if (payload.description) firestorePayload.description = payload.description
+    if (payload.photo) firestorePayload.photo = payload.photo
+    if (payload.audio) firestorePayload.audio = payload.audio
+
+    return firestorePayload;
   },
 
   fromFirestore(
-    snapshot: QueryDocumentSnapshot<GPSLocation>,
+    snapshot: QueryDocumentSnapshot<Payload>,
     options: SnapshotOptions
-  ): GPSLocation {
+  ): Payload {
     const data = snapshot.data(options)!;
-    return { 
-      latitude: data['latitude'],
-      longitude: data['longitude'],
-      timestamp: data['timestamp']
+    return {
+      position: data['position'],
+      description: data['description'],
+      photo: data['photo'],
+      audio: data['audio']
     }
   }
 };
@@ -39,6 +43,6 @@ export class FirebaseService {
 
   constructor() {}
 
-  uploadPosition = (position: GPSLocation) => 
-    addDoc<GPSLocation>(collection(this.firestore, "positions").withConverter(positionConverter), position)
+  uploadPosition = (payload: Payload) => 
+    addDoc<Payload>(collection(this.firestore, "positions").withConverter(payloadConverter), payload)
 }

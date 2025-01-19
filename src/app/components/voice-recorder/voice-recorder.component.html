@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Voice Recorder
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button *ngIf="!isRecording" expand="block" fill="clear" shape="round" (click)="record()">Grabar</ion-button>
+
+  <ion-button *ngIf="isRecording" expand="block" fill="clear" shape="round" (click)="stop()">Detener</ion-button>
+
+  <ion-button *ngIf="recordData !== undefined" expand="block" fill="clear" shape="round" (click)="play()">Reproducir</ion-button>
+</ion-content>
