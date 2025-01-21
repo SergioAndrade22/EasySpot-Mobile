@@ -8,6 +8,9 @@ import { environment } from './environments/environment'
 import { provideAnalytics, getAnalytics } from '@angular/fire/analytics'
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app'
 import { getFirestore, provideFirestore } from '@angular/fire/firestore'
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+
+defineCustomElements(window);
 
 if (environment.production) {
   enableProdMode();

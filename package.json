@@ -34,6 +34,7 @@
     "@capacitor/preferences": "5.0.8",
     "@capacitor/status-bar": "5.0.6",
     "@ionic/angular": "^7.0.0",
+    "@ionic/pwa-elements": "^3.3.0",
     "capacitor-voice-recorder": "^5.0.0",
     "firebase": "^9.23.0",
     "ionicons": "^7.0.0",
