@@ -4,9 +4,8 @@ import { Geolocation, Position } from '@capacitor/geolocation';
 import { ConnectivityService } from '../services/connectivity.service';
 import { GPSLocation, Payload } from '../types';
 import { FirebaseService } from '../services/firebase.service';
-import { PictureService } from '../services/picture.service';
 import { ModalComponent } from '../components/modal/modal.component';
-import { Photo } from '@capacitor/camera';
+import { Preferences } from '@capacitor/preferences';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +16,8 @@ import { Photo } from '@capacitor/camera';
   providers: [ConnectivityService, FirebaseService],
 })
 export class HomePage implements OnInit {
-  toSend: Payload[] = []
+  STORE_KEY = 'positions'
+  positions: Payload[] = []
   disableSend: boolean = false
   description?: string
   photo?: string
@@ -30,10 +30,14 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadPositions()
+
     setInterval(() => {
       if (this.connectivity.networkStatus) {
-        while (this.toSend.length > 0) 
-          this.firebase.uploadPosition(this.toSend.pop()!)
+        while (this.positions.length > 0) {
+          this.firebase.uploadPosition(this.positions.pop()!)
+          this.saveLocal()
+        }
       }
     }, 5000)
   }
@@ -66,10 +70,33 @@ export class HomePage implements OnInit {
       photo: this.photo,
       audio: this.audio,
     }
-    this.toSend.push(payload)
+
+    this.sendPosition(payload)
   };
 
   enableButton = () => this.disableSend = false
+
+  private sendPosition = async (payload: Payload) => {
+    if (this.connectivity.networkStatus) {
+      this.firebase.uploadPosition(payload)
+    } else {
+      this.positions.push(payload)
+      this.saveLocal()
+    }
+  }
+
+  private loadPositions = async () => {
+    const { value } = await Preferences.get({ key: this.STORE_KEY })
+    if (value)
+      this.positions = JSON.parse(value)
+  }
+
+  private saveLocal = async () => {
+    Preferences.set({
+      key: this.STORE_KEY,
+      value: JSON.stringify(this.positions)
+    })
+  }
 
   private toObject = (coordinates: Position): GPSLocation => {
     return {
